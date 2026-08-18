@@ -8,8 +8,8 @@ export const giftConfig = {
   message:
     "Terima kasih sudah menjadi rumah paling hangat dalam setiap cerita kita. Semoga kejutan kecil ini selalu mengingatkanmu betapa berartinya kamu.",
   theme: "rose",
-  originalPhoto: "/gift/pixel-couple.png",
-  originalPhotoAlt: "Ilustrasi pasangan tersenyum di taman saat senja",
-  pixelArtwork: "/gift/pixel-couple.png",
+  originalPhoto: "/gift/original-photo.webp",
+  originalPhotoAlt: "Raka dan Alya tersenyum bersama di taman saat senja",
+  pixelArtwork: "/gift/pixel-couple.webp",
   pixelArtworkAlt: "Avatar pixel Raka dan Alya berdiri berdekatan",
 } satisfies GiftConfig;

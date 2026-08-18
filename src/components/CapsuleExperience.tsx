@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { AudioControl } from "@/components/AudioControl";
 import { CapsuleCover } from "@/components/CapsuleCover";
 import { CapsuleOpening } from "@/components/CapsuleOpening";
+import { GiftReveal } from "@/components/GiftReveal";
 import type { GiftConfig } from "@/types/gift";
 
 type CapsuleExperienceProps = {
@@ -41,7 +43,9 @@ export function CapsuleExperience({ gift }: CapsuleExperienceProps) {
   }, [phase]);
 
   return (
-    <div data-theme={gift.theme} className="min-h-svh bg-rose-50 text-rose-950">
+    <main data-theme={gift.theme} className="experience">
+      {gift.music && <AudioControl src={gift.music} />}
+
       {phase === "sealed" && (
         <CapsuleCover
           recipientName={gift.recipientName}
@@ -53,16 +57,8 @@ export function CapsuleExperience({ gift }: CapsuleExperienceProps) {
       {phase === "opening" && <CapsuleOpening />}
 
       {phase === "revealed" && (
-        <section className="flex min-h-svh items-center justify-center px-5 text-center">
-          <h1
-            ref={revealHeadingRef}
-            tabIndex={-1}
-            className="text-4xl font-semibold outline-none"
-          >
-            Untuk {gift.recipientName}
-          </h1>
-        </section>
+        <GiftReveal gift={gift} headingRef={revealHeadingRef} />
       )}
-    </div>
+    </main>
   );
 }

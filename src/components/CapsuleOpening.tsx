@@ -1,12 +1,16 @@
 export function CapsuleOpening() {
   return (
-    <section
-      className="flex min-h-svh flex-col items-center justify-center px-5 text-center"
-      role="status"
-      aria-live="polite"
-    >
-      <div className="mb-8 h-44 w-28 animate-pulse rounded-full border-4 border-current" aria-hidden="true" />
-      <p className="text-lg font-medium">Sedang membuka kejutanmu…</p>
+    <section className="capsule-opening" role="status" aria-live="polite">
+      <div className="opening-scene" aria-hidden="true">
+        <span className="burst burst--one">♥</span>
+        <span className="burst burst--two">✦</span>
+        <span className="burst burst--three">♥</span>
+        <span className="burst burst--four">✦</span>
+        <span className="opening-capsule opening-capsule--top" />
+        <span className="opening-glow" />
+        <span className="opening-capsule opening-capsule--bottom" />
+      </div>
+      <p>Sedang membuka kejutanmu…</p>
     </section>
   );
 }
