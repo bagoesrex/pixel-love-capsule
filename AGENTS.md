@@ -92,8 +92,10 @@ src/
 │   ├── layout.tsx
 │   └── page.tsx
 ├── components/
+│   ├── AudioControl.tsx
 │   ├── CapsuleCover.tsx
 │   ├── CapsuleOpening.tsx
+│   ├── CapsuleExperience.tsx
 │   ├── GiftReveal.tsx
 │   └── LoveNote.tsx
 ├── config/
@@ -122,6 +124,23 @@ ketika increment implementasi membutuhkannya.
 - Jangan membuat config engine generik atau multi-tenant pada MVP.
 - Optimalkan foto ke WebP/AVIF dan kompres audio sebelum deployment.
 - Tulis alt text foto berdasarkan konteks tanpa mengungkap informasi sensitif.
+
+## Workflow membuat pesanan
+
+1. Salin repository/deployment ini untuk satu pelanggan.
+2. Ganti `public/gift/original-photo.webp` dengan foto asli berukuran persegi.
+3. Ganti `public/gift/pixel-couple.webp` dengan hasil pixel-art pelanggan.
+4. Optimalkan kedua gambar ke WebP, idealnya 960×960 px dan masing-masing di
+   bawah 200 KB.
+5. Edit semua data pelanggan di `src/config/gift.config.ts`.
+6. Jika memakai musik, simpan audio terkompresi di `public/gift/` dan isi properti
+   `music`. Jangan autoplay; penerima harus memulai musik melalui kontrol UI.
+7. Jalankan `npm test`, `npm run lint`, dan `npm run build`.
+8. Buka production build pada ponsel atau viewport 320 px dan selesaikan alur
+   sampai love note sebelum menerbitkan URL.
+
+Aset yang ada saat ini adalah data demo fiktif. Jangan memakai data demo untuk
+pesanan pelanggan tanpa mengganti nama, pesan, alt text, foto, dan pixel-art.
 
 Contoh kontrak data yang dituju:
 
@@ -182,5 +201,17 @@ type GiftConfig = {
 
 ## Status saat ini
 
-Proyek baru berada pada tahap scaffold Next.js. Pengalaman Simple Pixel Love
-Capsule belum diimplementasikan.
+MVP Simple Pixel Love Capsule sudah dapat dimainkan end-to-end:
+
+- cover personal dan tombol membuka hadiah;
+- animasi kapsul dengan dukungan `prefers-reduced-motion`;
+- reveal pixel-art, foto asli, tanggal, love note, dan penutup;
+- tiga token tema: `rose`, `sunset`, dan `midnight`;
+- kontrol musik kondisional yang tidak autoplay;
+- metadata personal berbahasa Indonesia;
+- test otomatis untuk konfigurasi, opening flow, reveal, dan audio;
+- production build tetap terprarender statis pada route `/`.
+
+Verifikasi terakhir: 7 test lulus, ESLint lulus, production build lulus, serta
+alur browser lulus pada viewport 320, 768, 1024, dan 1440 px tanpa console error,
+response gagal, atau horizontal overflow.
